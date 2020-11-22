@@ -20,6 +20,6 @@ Given a 2D grid of characters and a word, find all occurrences of given word in 
                     
     output: "[(0 , 4)SW, (1 , 2)E]"
 ```
-Note: The funnction will return "Not Found" if the word is not in the matrix!
+Note: The function will return "Not Found" if the word is not in the matrix!
 
 Please enjoy my solution and feel free to add suggestions. 
