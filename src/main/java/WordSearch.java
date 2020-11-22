@@ -1,19 +1,7 @@
-package com;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *Given a 2D grid of characters and a word, find all occurrences of given word in grid.
- * A word can be matched in all 8 directions at any point.
- * Word is said be found in a direction if all characters match in this direction (not in zig-zag form).
- * The solution should print the starting coordinate and the direction (north, east, south, west, etc..)
- * The 8 directions are, Horizontally Left, Horizontally Right, Vertically Up, Vertically Down and 4 Diagonals.
- *
- */
-
-class WordSearch{
+public class WordSearch{
 
     //class variables telling the direction vectors
     /*
@@ -28,8 +16,8 @@ class WordSearch{
 
      */
     //Vectors go from north to northwest
-    public static int[] xVector = {0,  1,  1, 1, 0, -1, -1, -1};
-    public static int[] yVector = {-1, -1, 0, 1, 1,  1,  0, -1};
+    public static int[] xVector = {0,  1,  1, 1, 0, -1, -1, -1}; //traversing the columns
+    public static int[] yVector = {-1, -1, 0, 1, 1,  1,  0, -1}; //traversing the rows
 
     //switch statement taking in the directions and printing out north east and south
     public static String coordinateConverter(int direction){
@@ -56,6 +44,7 @@ class WordSearch{
         }
     }
 
+    //returns the directions of the word from a specific coordinate point
     public static String solveIn8Dir(String word, char[][] grid, int row, int col){
         //check the first character to see if it matches the first letter in the word...if not
         //return the empty string
@@ -66,8 +55,8 @@ class WordSearch{
         int wordLen = word.length();
         // 0 = N to 8 = NW
         for(int direction = 0; direction < 8; direction ++){
-            int rowDir = row + xVector[direction];
-            int colDir = col+ yVector[direction];
+            int rowDir = row + yVector[direction];  // up or down y
+            int colDir = col+ xVector[direction];   //left or right x
             int i; //pointer in the matrix
 
             //iterate the length of the word in the direction
@@ -79,17 +68,18 @@ class WordSearch{
                 if(grid[rowDir][colDir] != word.charAt(i)) break;
 
                 //otherwise increase the colDir and rowDir by the direction vectors
-                rowDir += xVector[direction];
-                colDir += yVector[direction];
+                rowDir += yVector[direction]; //row => y
+                colDir += xVector[direction]; //col => x
             }
 
             //check if i == the wordLen (that means we matched in this direction)
             if(i == wordLen){
                 dir += coordinateConverter(direction) + " ";
-                System.out.println("Direction: " + direction + " is " + dir);
+                //System.out.println("Direction: " + direction + " is " + dir);
             }
         }
 
+        //System.out.println("Dir is " + dir);
         return dir.trim();
     }
 
@@ -114,6 +104,7 @@ class WordSearch{
                 }
             }
         }
+        if(locations.isEmpty()) return "Not Found";
         return locations.toString();
     }
 
@@ -123,10 +114,10 @@ class WordSearch{
     {
         char[][] grid = {
                 {'o', 'k', 'k', 'y', 'e', 'k'},
-                {'p', 'e', 'e', 't', 'u', 'v'},
-                {'y', 'j', 'y', 'y', 'r', 's'}
+                {'p', 'e', 'e', 't', 'e', 'v'},
+                {'y', 'j', 'y', 'y', 'r', 'k'}
         };
-        String word = "et";
+        String word = "key";
         System.out.println( WordSearch.printLocations(grid, word) );
     }
 
