@@ -7,7 +7,7 @@ Given a 2D grid of characters and a word, find all occurrences of given word in 
  * The solution should print the starting coordinate and the direction (north, east, south, west, etc..)
  * The 8 directions are North, South, East, West,...
  
- ![Word Search Puzzle Demo](demo/demo.gif)
+ ![Word Search Puzzle Demo](search.gif)
 
  
  
